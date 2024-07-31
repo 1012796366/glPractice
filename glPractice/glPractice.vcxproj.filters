@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="着色器">
+      <UniqueIdentifier>{241edde1-ca9a-4ef0-ac91-37c8b96feba6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GLAD">
+      <UniqueIdentifier>{27e5f554-b11d-48e1-aa0a-cf0e213aef5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="窗口">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="预定义宏">
+      <UniqueIdentifier>{0dcff380-821a-41b1-aa37-1f2c1e29993c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="输入处理">
+      <UniqueIdentifier>{120925bc-7992-48c3-be8e-65d9251bcb25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="主程序">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="非代码资源">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>主程序</Filter>
+    </ClCompile>
+    <ClCompile Include="shader.h">
+      <Filter>着色器</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Dependencies\src\glad.c">
+      <Filter>GLAD</Filter>
+    </ClCompile>
+    <ClCompile Include="preFlag.h">
+      <Filter>预定义宏</Filter>
+    </ClCompile>
+    <ClCompile Include="framebuffer.cpp">
+      <Filter>窗口</Filter>
+    </ClCompile>
+    <ClCompile Include="inputProc.cpp">
+      <Filter>输入处理</Filter>
+    </ClCompile>
+    <ClCompile Include="initWin.cpp">
+      <Filter>窗口</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="initWin.h">
+      <Filter>窗口</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,7 @@
+#pragma once
+#include <GLFW/glfw3.h>
+
+#define GLBW_SCREEN_FULLSCREEN 0
+#define GLBW_SCREEN_BORDERLESS 1
+#define GLBW_SCREEN_FULLBORDER 2
+#define GLBW_SCREEN_WINDOWED   3
