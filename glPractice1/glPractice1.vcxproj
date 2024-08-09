@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{f30ec200-21ad-44a0-8724-4d405abd8bd0}</ProjectGuid>
-    <RootNamespace>glPractice</RootNamespace>
+    <ProjectGuid>{49a1f754-db72-4fe5-9f19-f2bd2e4151a5}</ProjectGuid>
+    <RootNamespace>glPractice1</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>glPractice0</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -73,6 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(SolutionDir)Dependencies\include\;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <ReferencePath>$(VC_ReferencesPath_x64);</ReferencePath>
     <LibraryPath>$(SolutionDir)Dependencies\lib\;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -134,23 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Dependencies\src\glad.c" />
-    <ClCompile Include="framebuffer.cpp" />
-    <ClCompile Include="initWin.cpp" />
-    <ClCompile Include="inputProc.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="opsWin.cpp" />
-    <ClCompile Include="opsWin.h" />
-    <ClCompile Include="preFlag.h" />
-    <ClCompile Include="shader.cpp" />
-    <ClCompile Include="shader.h" />
-    <ClCompile Include="shaderException.cpp" />
-    <ClCompile Include="shaderException.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="initWin.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

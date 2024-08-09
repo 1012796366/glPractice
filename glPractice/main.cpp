@@ -8,13 +8,13 @@ void processInput(GLFWwindow *window);
 int main()
 {
 	basicWindow base;
-	base.initWindow("LearnOpenGL", GLBW_SCREEN_FULLSCREEN, 1920, 1200);
+	base.initWindow("LearnOpenGL", GLBW_SCREEN_FULLBORDER);
+	base.setBackgroundColor(0.2f, 0.3f, 0.3f);
+	
 	while (base.isWindowAlive())
 	{
 		processInput(base.window);
-
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		base.clearBackgroundColor();
 
 		base.swapBuffer();
 		base.pollEvents();

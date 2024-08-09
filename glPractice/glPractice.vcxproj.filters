@@ -25,13 +25,46 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="介绍文档">
+      <UniqueIdentifier>{0dbd44ae-a4bb-42a2-8574-a4f6f55db30d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="异常">
+      <UniqueIdentifier>{0776a553-b92c-433e-a687-8ebf2c8c0654}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="异常\着色器">
+      <UniqueIdentifier>{f105fe48-766f-4add-932b-b7b422eb545b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="异常\着色器\声明">
+      <UniqueIdentifier>{cbc9350a-9304-49d6-a3db-04456d7187f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="异常\着色器\定义">
+      <UniqueIdentifier>{acf606c4-16ad-4cc6-a6fb-878b6e52f2e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="着色器\声明">
+      <UniqueIdentifier>{21484cce-774d-4f16-aa50-4cd50081cc9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="着色器\定义">
+      <UniqueIdentifier>{32def098-e43f-4dd0-bf40-864dd6c310a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="窗口\声明">
+      <UniqueIdentifier>{f13641c6-3bda-49b7-aba3-b57aa4a27418}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="窗口\定义">
+      <UniqueIdentifier>{19a7ca98-9342-45df-98f6-917ea60fe2de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="窗口操作函数">
+      <UniqueIdentifier>{d0778116-f0e7-4551-a96a-57d55250b96d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="窗口操作函数\声明">
+      <UniqueIdentifier>{e3738c30-8fd3-4615-bab3-c7d3685f6bfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="窗口操作函数\定义">
+      <UniqueIdentifier>{6be5986f-602c-4cad-bf49-23e6df7596d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>主程序</Filter>
-    </ClCompile>
-    <ClCompile Include="shader.h">
-      <Filter>着色器</Filter>
     </ClCompile>
     <ClCompile Include="..\Dependencies\src\glad.c">
       <Filter>GLAD</Filter>
@@ -39,19 +72,42 @@
     <ClCompile Include="preFlag.h">
       <Filter>预定义宏</Filter>
     </ClCompile>
-    <ClCompile Include="framebuffer.cpp">
-      <Filter>窗口</Filter>
-    </ClCompile>
     <ClCompile Include="inputProc.cpp">
       <Filter>输入处理</Filter>
     </ClCompile>
+    <ClCompile Include="shaderException.h">
+      <Filter>异常\着色器\声明</Filter>
+    </ClCompile>
+    <ClCompile Include="shaderException.cpp">
+      <Filter>异常\着色器\定义</Filter>
+    </ClCompile>
+    <ClCompile Include="shader.h">
+      <Filter>着色器\声明</Filter>
+    </ClCompile>
+    <ClCompile Include="shader.cpp">
+      <Filter>着色器\定义</Filter>
+    </ClCompile>
     <ClCompile Include="initWin.cpp">
-      <Filter>窗口</Filter>
+      <Filter>窗口\定义</Filter>
+    </ClCompile>
+    <ClCompile Include="framebuffer.cpp">
+      <Filter>窗口\定义</Filter>
+    </ClCompile>
+    <ClCompile Include="opsWin.h">
+      <Filter>窗口操作函数\声明</Filter>
+    </ClCompile>
+    <ClCompile Include="opsWin.cpp">
+      <Filter>窗口操作函数\定义</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\README.md">
+      <Filter>介绍文档</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="initWin.h">
-      <Filter>窗口</Filter>
+      <Filter>窗口\声明</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

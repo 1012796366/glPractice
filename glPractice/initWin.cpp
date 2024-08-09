@@ -3,6 +3,7 @@
 void basicWindow::shutWindow()
 {
 	glfwTerminate();
+	initFlag = false;
 }
 
 void basicWindow::initWindow(char const* title, int scrFlag, int width, int height,
@@ -10,6 +11,7 @@ void basicWindow::initWindow(char const* title, int scrFlag, int width, int heig
 {
 	if (initFlag)
 	{
+		// a basicWindow object should only manage 1 window at a time
 		return;
 	}
 	// GLFW Initialization
@@ -48,6 +50,7 @@ void basicWindow::initGLFW(char const* title, int width, int height, int scrFlag
 {
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_RESIZABLE, false);
 	GLFWmonitor* monitor = glfwGetPrimaryMonitor();
 	if (monitor == nullptr)
