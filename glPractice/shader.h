@@ -1,38 +1,25 @@
 #pragma once
 #include <glad/glad.h>
-#include <forward_list>
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include "shaderException.h"
 
-class basicShader
-{
-public:
-	// shader ID
-	unsigned int shaderID;
+// vertexPath: path to vertex shader source code file
+// fragmentPath: path to fragment shader source code file
+// may throw std::ifstream::failure
+GLuint loadShaderFromFile(char const* vertexPath, char const* fragmentPath);
 
-	// vertex shader code and fragment shader code
-	std::string vcode;
-	std::string fcode;
+// vertexStr: vertex shader source code in c string
+// fragmentStr: fragment shader source code in c string
+GLuint loadShaderFromStr(char const* vertexStr, char const* fragmentStr);
 
-	// failure flag
-	bool failFlag = false;
-
-	// ready flag
-	bool setFlag = false;
-	std::forward_list<std::string> errLog;
-
-	// vertexPath: path to vertex shader source code file
-	// fragmentPath: path to fragment shader source code file
-	// may throw std::ifstream::failure
-	void loadShaderFromFile(char const* vertexPath, char const* fragmentPath);
-
-	// vertexStr: vertex shader source code in c string
-	// fragmentStr: fragment shader source code in c string
-	void loadShaderFromStr(char const* vertexStr, char const* fragmentStr);
-
-	// enable current shader
-	void use();
-};
+// Uniform setter
+void setBool(GLuint shaderID, const std::string& name, GLboolean value);
+void setInt(GLuint shaderID, const std::string& name, GLint value);
+void setFloat(GLuint shaderID, const std::string& name, GLfloat value);
+void setMat4(GLuint shaderID, const std::string& name, glm::mat4 value);

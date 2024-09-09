@@ -1,9 +1,11 @@
 #include "shader.h"
 
 
-void basicShader::loadShaderFromFile(char const* vertexPath, char const* fragmentPath)
+GLuint loadShaderFromFile(char const* vertexPath, char const* fragmentPath)
 {
 	// keep the shader source code latest
+	std::string vcode;
+	std::string fcode;
 	vcode.clear();
 	fcode.clear();
 
@@ -14,6 +16,7 @@ void basicShader::loadShaderFromFile(char const* vertexPath, char const* fragmen
 	// throw exception if needed
 	vfile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 	ffile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+	
 	try
 	{
 		// read shader source code from file
@@ -31,24 +34,25 @@ void basicShader::loadShaderFromFile(char const* vertexPath, char const* fragmen
 		vfile.close();
 		ffile.close();
 
+
 		// write the code to std::string object
 		vcode = vsstream.str();
 		fcode = fsstream.str();
+
 	}
-	catch (std::ifstream::failure iE)
+	catch (std::ifstream::failure& iE)
 	{
-		failFlag = true;
 		throw iE;
 	}
-	this->loadShaderFromStr(vcode.c_str(), fcode.c_str());
+	return loadShaderFromStr(vcode.c_str(), fcode.c_str());
 }
 
-void basicShader::loadShaderFromStr(char const* vertexStr, char const* fragmentStr)
+GLuint loadShaderFromStr(char const* vertexStr, char const* fragmentStr)
 {
 	// vertex shader ID and fragment shader ID
-	unsigned int vertex, fragment;
-	int success;
-	char infoLog[512];
+	GLuint vertex, fragment, shaderID;
+	GLint success;
+	GLchar infoLog[512];
 
 	// vertex shader part
 	vertex = glCreateShader(GL_VERTEX_SHADER);
@@ -60,14 +64,13 @@ void basicShader::loadShaderFromStr(char const* vertexStr, char const* fragmentS
 	if (!success)
 	{
 		// vertex shader compile has failed
-		failFlag = true;
 		glGetShaderInfoLog(vertex, 512, nullptr, infoLog);
 		throw vertexShaderException(infoLog);
 	}
 	// end of vertex shader part
 
 	// fragment shader part
-	fragment = glCreateShader(GL_VERTEX_SHADER);
+	fragment = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(fragment, 1, &fragmentStr, nullptr);
 	glCompileShader(fragment);
 
@@ -76,7 +79,6 @@ void basicShader::loadShaderFromStr(char const* vertexStr, char const* fragmentS
 	if (!success)
 	{
 		// fragment shader compile has failed
-		failFlag = true;
 		glGetShaderInfoLog(fragment, 512, nullptr, infoLog);
 		throw fragmentShaderException(infoLog);
 	}
@@ -92,7 +94,6 @@ void basicShader::loadShaderFromStr(char const* vertexStr, char const* fragmentS
 	glGetProgramiv(shaderID, GL_LINK_STATUS, &success);
 	if (!success)
 	{
-		failFlag = true;
 		glGetProgramInfoLog(shaderID, 512, nullptr, infoLog);
 		throw programException(infoLog);
 	}
@@ -101,19 +102,30 @@ void basicShader::loadShaderFromStr(char const* vertexStr, char const* fragmentS
 	// delete shader as it's already linked to our program and no longer needed
 	glDeleteShader(vertex);
 	glDeleteShader(fragment);
-	
-	// ready flag should only be set to TRUE while fail flag is FALSE
-	setFlag = !failFlag;
+
+	return shaderID;
 }
 
-void basicShader::use()
+void setBool(GLuint shaderID, const std::string& name, GLboolean value)
 {
-	if (setFlag)
-	{
-		glUseProgram(shaderID);
-	}
-	else
-	{
-		throw shaderException("A shader program hasn't finished compiled and linked.");
-	}
+	glUseProgram(shaderID);
+	glUniform1i(glGetUniformLocation(shaderID, name.c_str()), (int)value);
+}
+
+void setInt(GLuint shaderID, const std::string& name, GLint value)
+{
+	glUseProgram(shaderID);
+	glUniform1i(glGetUniformLocation(shaderID, name.c_str()), value);
+}
+
+void setFloat(GLuint shaderID, const std::string& name, GLfloat value)
+{
+	glUseProgram(shaderID);
+	glUniform1f(glGetUniformLocation(shaderID, name.c_str()), value);
+}
+
+void setMat4(GLuint shaderID, const std::string& name, glm::mat4 value)
+{
+	glUseProgram(shaderID);
+	glUniformMatrix4fv(glGetUniformLocation(shaderID, name.c_str()), 1, GL_FALSE, glm::value_ptr(value));
 }
