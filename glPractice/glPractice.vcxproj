@@ -24,7 +24,7 @@
     <ProjectGuid>{f30ec200-21ad-44a0-8724-4d405abd8bd0}</ProjectGuid>
     <RootNamespace>glPractice</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>glPractice0</ProjectName>
+    <ProjectName>glPractice</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -75,6 +75,10 @@
     <IncludePath>$(SolutionDir)Dependencies\include\;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\lib\;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(SolutionDir)Dependencies\include\;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\lib\;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -114,6 +118,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/NODEFAULTLIB:library %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -130,24 +135,30 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Dependencies\src\glad.c" />
+    <ClCompile Include="absNode.cpp" />
     <ClCompile Include="framebuffer.cpp" />
-    <ClCompile Include="initWin.cpp" />
     <ClCompile Include="inputProc.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="opsWin.cpp" />
-    <ClCompile Include="opsWin.h" />
     <ClCompile Include="preFlag.h" />
     <ClCompile Include="shader.cpp" />
-    <ClCompile Include="shader.h" />
     <ClCompile Include="shaderException.cpp" />
-    <ClCompile Include="shaderException.h" />
+    <ClCompile Include="windowException.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Dependencies\include\stb_image.h" />
+    <ClInclude Include="absNode.h" />
     <ClInclude Include="initWin.h" />
+    <ClInclude Include="inputProc.h" />
+    <ClInclude Include="opsWin.h" />
+    <ClInclude Include="shader.h" />
+    <ClInclude Include="shaderException.h" />
+    <ClInclude Include="windowException.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />

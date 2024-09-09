@@ -52,52 +52,76 @@
     <Filter Include="窗口\定义">
       <UniqueIdentifier>{19a7ca98-9342-45df-98f6-917ea60fe2de}</UniqueIdentifier>
     </Filter>
-    <Filter Include="窗口操作函数">
+    <Filter Include="输入处理\定义">
+      <UniqueIdentifier>{18681ce2-1bb6-434b-9537-5534fd9a7511}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="输入处理\声明">
+      <UniqueIdentifier>{f7f54b7d-7759-4d96-b96c-13cff63e2811}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="窗口\窗口操作函数">
       <UniqueIdentifier>{d0778116-f0e7-4551-a96a-57d55250b96d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="窗口操作函数\声明">
+    <Filter Include="窗口\窗口操作函数\声明">
       <UniqueIdentifier>{e3738c30-8fd3-4615-bab3-c7d3685f6bfd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="窗口操作函数\定义">
+    <Filter Include="窗口\窗口操作函数\定义">
       <UniqueIdentifier>{6be5986f-602c-4cad-bf49-23e6df7596d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="异常\窗口">
+      <UniqueIdentifier>{bf93a230-03db-4e2d-b3ef-9a87f27cfae1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="异常\窗口\声明">
+      <UniqueIdentifier>{86e58eb2-dce0-4758-b1f6-373f818b8ab4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="异常\窗口\定义">
+      <UniqueIdentifier>{2c47c24e-da5b-4714-8638-1d074cb3d227}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stb_img">
+      <UniqueIdentifier>{9832c8e4-c138-4de9-9ff6-de47945fc83c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stb_img\声明">
+      <UniqueIdentifier>{03b95a26-abed-499b-b3b1-e0b78c36720d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="图元">
+      <UniqueIdentifier>{548205f1-6f64-4daa-89a4-44a69613eca7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="图元\声明">
+      <UniqueIdentifier>{ad53c1aa-dbee-4d20-86db-a82ba38f6710}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="图元\定义">
+      <UniqueIdentifier>{4f5c0fe5-32e1-4855-a07b-25c38ebf21bb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>主程序</Filter>
-    </ClCompile>
     <ClCompile Include="..\Dependencies\src\glad.c">
       <Filter>GLAD</Filter>
     </ClCompile>
     <ClCompile Include="preFlag.h">
       <Filter>预定义宏</Filter>
     </ClCompile>
-    <ClCompile Include="inputProc.cpp">
-      <Filter>输入处理</Filter>
+    <ClCompile Include="framebuffer.cpp">
+      <Filter>窗口\定义</Filter>
     </ClCompile>
-    <ClCompile Include="shaderException.h">
-      <Filter>异常\着色器\声明</Filter>
+    <ClCompile Include="main.cpp">
+      <Filter>主程序</Filter>
     </ClCompile>
-    <ClCompile Include="shaderException.cpp">
-      <Filter>异常\着色器\定义</Filter>
-    </ClCompile>
-    <ClCompile Include="shader.h">
-      <Filter>着色器\声明</Filter>
+    <ClCompile Include="opsWin.cpp">
+      <Filter>窗口\窗口操作函数\定义</Filter>
     </ClCompile>
     <ClCompile Include="shader.cpp">
       <Filter>着色器\定义</Filter>
     </ClCompile>
-    <ClCompile Include="initWin.cpp">
-      <Filter>窗口\定义</Filter>
+    <ClCompile Include="shaderException.cpp">
+      <Filter>异常\着色器\定义</Filter>
     </ClCompile>
-    <ClCompile Include="framebuffer.cpp">
-      <Filter>窗口\定义</Filter>
+    <ClCompile Include="inputProc.cpp">
+      <Filter>输入处理\定义</Filter>
     </ClCompile>
-    <ClCompile Include="opsWin.h">
-      <Filter>窗口操作函数\声明</Filter>
+    <ClCompile Include="windowException.cpp">
+      <Filter>异常\窗口\定义</Filter>
     </ClCompile>
-    <ClCompile Include="opsWin.cpp">
-      <Filter>窗口操作函数\定义</Filter>
+    <ClCompile Include="absNode.cpp">
+      <Filter>图元\定义</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +132,27 @@
   <ItemGroup>
     <ClInclude Include="initWin.h">
       <Filter>窗口\声明</Filter>
+    </ClInclude>
+    <ClInclude Include="opsWin.h">
+      <Filter>窗口\窗口操作函数\声明</Filter>
+    </ClInclude>
+    <ClInclude Include="shader.h">
+      <Filter>着色器\声明</Filter>
+    </ClInclude>
+    <ClInclude Include="shaderException.h">
+      <Filter>异常\着色器\声明</Filter>
+    </ClInclude>
+    <ClInclude Include="inputProc.h">
+      <Filter>输入处理\声明</Filter>
+    </ClInclude>
+    <ClInclude Include="windowException.h">
+      <Filter>异常\窗口\声明</Filter>
+    </ClInclude>
+    <ClInclude Include="absNode.h">
+      <Filter>图元\声明</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Dependencies\include\stb_image.h">
+      <Filter>stb_img\声明</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
