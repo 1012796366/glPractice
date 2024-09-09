@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glPractice0", "glPractice\glPractice.vcxproj", "{F30EC200-21AD-44A0-8724-4D405ABD8BD0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glPractice", "glPractice\glPractice.vcxproj", "{F30EC200-21AD-44A0-8724-4D405ABD8BD0}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glPractice1", "glPractice1\glPractice1.vcxproj", "{49A1F754-DB72-4FE5-9F19-F2BD2E4151A5}"
 EndProject
