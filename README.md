@@ -1,2 +1,2 @@
 # glPractice
-OpenGL Á·Ï°
+OpenGL ç»ƒä¹ 
