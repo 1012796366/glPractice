@@ -1,9 +1,10 @@
-#include <GLFW/glfw3.h>
+#include "inputProc.h"
 
-void processInput(GLFWwindow *window)
+void processInput(basicWindow& basicWindowObj)
 {
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+	if (glfwGetKey(basicWindowObj.window, GLFW_KEY_ESCAPE) == GLFW_PRESS ||
+		glfwGetKey(basicWindowObj.window, GLFW_KEY_SPACE) == GLFW_PRESS)
 	{
-		glfwSetWindowShouldClose(window, true);
+		glfwSetWindowShouldClose(basicWindowObj.window, true);
 	}
 }
