@@ -12,23 +12,23 @@ int screenHeight = 600;
 int main()
 {
 	GLfloat vertices[] = {
-	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,		// 0
-	 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,		// 1
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,		// 2
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,		// 3
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,		// 4
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,		// 5
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,		// 6
-	-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,		// 7
-	-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,		// 8
-	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,		// 9
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,		// 10
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,		// 11
-	 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,		// 12
-	 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,		// 13
-	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,		// 14
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,		// 15
-	-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,		// 16
+		-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,		// 0
+		 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,		// 1
+		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,		// 2
+		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,		// 3
+		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,		// 4
+		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,		// 5
+		 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,		// 6
+		-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,		// 7
+		-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,		// 8
+		-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,		// 9
+		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,		// 10
+		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,		// 11
+		 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,		// 12
+		 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,		// 13
+		 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,		// 14
+		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,		// 15
+		-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,		// 16
 	};
 	GLuint indices[] = {
 		0, 1, 2,
@@ -44,6 +44,18 @@ int main()
 		2, 3, 11,
 		3, 11, 16
 	};
+	glm::vec3 cubePos[] = {
+		glm::vec3(0.0f,  0.0f,  0.0f),
+		glm::vec3(2.0f,  5.0f, -15.0f),
+		glm::vec3(-1.5f, -2.2f, -2.5f),
+		glm::vec3(-3.8f, -2.0f, -12.3f),
+		glm::vec3(2.4f, -0.4f, -3.5f),
+		glm::vec3(-1.7f,  3.0f, -7.5f),
+		glm::vec3(1.3f, -2.0f, -2.5f),
+		glm::vec3(1.5f,  2.0f, -2.5f),
+		glm::vec3(1.5f,  0.2f, -1.5f),
+		glm::vec3(-1.3f,  1.0f, -1.5f)
+	};
 
 	basicWindow base;
 	try
@@ -57,56 +69,43 @@ int main()
 	}
 
 	primitive box;
-	//primitive face;
 	box.vaoID = genVAO();
 	box.vboID = genVBO();
 	box.eboID = genEBO();
 	box.shaderID = loadShaderFromFile("./Shader/vertex.vs", "./Shader/fragment.fs");
 
-	//face.vaoID = genVAO();
-	//face.vboID = genVBO();
-	//face.eboID = genEBO();
-	//face.shaderID = loadShaderFromFile("./Shader/vertex.vs", "./Shader/fragment.fs");
-
 	// ↓ 导入顶点数据与序列数据 ↓
-	buffVerticles(&box, vertices, sizeof(vertices));
-	buffIndices(&box, indices, sizeof(indices));
-	//buffVerticles(&face, vertices, sizeof(vertices));
-	//buffIndices(&face, indices, sizeof(indices));
+	buffVerticles(&box, vertices, sizeof(vertices), GL_STATIC_DRAW, 3, 0, 2);
+	buffIndices(&box, indices, sizeof(indices), GL_STATIC_DRAW);
 	// ↑ 导入顶点数据与序列数据 ↑
 
 	addTexture(&box, loadTextureFromFile("./pic/container.jpg"));
 	addTexture(&box, loadTextureFromFile("./pic/awesomeface.png"));
-	//addTexture(&face, loadTextureFromFile("./pic/container.jpg"));
-	//addTexture(&face, loadTextureFromFile("./pic/awesomeface.png"));
 
 	setBackgroundColor(0.2f, 0.3f, 0.3f);
 
 	setInt(box.shaderID, "cusTex1", 0);
 	setInt(box.shaderID, "cusTex2", 1);
-	//setInt(face.shaderID, "cusTex1", 0);
-	//setInt(face.shaderID, "cusTex2", 1);
 	glEnable(GL_DEPTH_TEST);
 	while (isWindowAlive(&base))
 	{
 		processInput(base);
 		clearBackground();
+		for (GLuint i = 0; i < sizeof(cubePos) / sizeof(glm::vec3); ++i)
+		{
+			box.transform = glm::mat4(1.0f);
+			translatePrimitive(&box, cubePos[i]);
+			if (i % 3 == 0)
+			{
+				rotatePrimitive(&box, (float)glfwGetTime(), glm::vec3(1.0f, 0.3f, 0.5f), "deg");
+			}
+			else
+			{
+				rotatePrimitive(&box, 32.0f, glm::vec3(0.2f, 0.1f, 0.3f), "deg");
+			}
+			drawPrimitive(&box);
+		}
 
-		translatePrimitive(&box, glm::vec3(0.4f, 0.3f, 0.2f));
-		rotatePrimitive(&box, (float)glfwGetTime(), glm::vec3(1.0f, 0.3f, 0.5f), "deg");
-		//scalePrimitive(&box, glm::vec3(0.5, 0.5, 0.5));
-
-		//translatePrimitive(&face, glm::vec3(-0.4f, -0.2f, 0.1f));
-		//rotatePrimitive(&face, 45.0f, glm::vec3(0.7f, 0.1f, -1.0f), "deg");
-		//scalePrimitive(&face, glm::vec3(0.5, 0.5, 0.5));
-
-		drawPrimitive(&box);
-		//drawPrimitive(&face);
-		
-		box.transform = glm::mat4(1.0f);
-		//face.transform = glm::mat4(1.0f);
-
-		
 		auto errID = glGetError();
 		if (errID)
 		{
