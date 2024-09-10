@@ -27,52 +27,33 @@ GLuint genVAO();
 GLuint genVBO();
 GLuint genEBO();
 
-// buffer verticles data to a primitive
-// will bind this primitive's own VAO / VBO
-// will NOT bind this primitive's own EBO
-// array will be passed as pointer and length data will be lost
-// so verticlesLength = sizeof(verticles) is necessary for solving this problem
-// texture property will be treated as a property with 2 GLfloat
-// { position, color, texture }
+// 导入顶点
+// verticesLength 必须为 sizeof(顶点数组)
+// xxDimension 代表一个属性是多少维，设置为 0 则禁用该属性
 void buffVerticles(
-	primitive* object, GLfloat* verticles, GLsizei verticlesLength, GLenum usages = GL_STATIC_DRAW
+	primitive* object, GLfloat* vertices, GLsizei verticeLength, GLenum usages = GL_STATIC_DRAW,
+	GLuint verticeDimension = 3, GLuint colorDimension = 3, GLuint textureDimension = 2
 );
 
-// buffer indices data to a primitive
-// will bind this primitive's own VAO / EBO
-// will NOT bind this primitive's own EBO
-// array will be passed as pointer and length data will be lost
-// so verticlesLength = sizeof(verticles) is necessary for solving this problem
-void buffIndices(
-	primitive* object, GLuint* indices, GLsizei indicesLength, GLenum usages = GL_STATIC_DRAW
-);
+// 导入序列
+// indiceLength 必须为 sizeof(序列数组)
+void buffIndices(primitive* object, GLuint* indices, GLsizei indiceLength, GLenum usages = GL_STATIC_DRAW);
 
-// will load a pic file
-GLuint loadTextureFromFile(
-	std::string pathToImg
-);
+// 加载图片，返回纹理 ID
+GLuint loadTextureFromFile(std::string pathToImg);
 
-void drawPrimitive(
-	primitive* object
-);
+// 为图元增添纹理
+void addTexture(primitive* object, GLuint texture);
 
-// will move the primitive relative to the given transform
-void translatePrimitive(
-	primitive* object, glm::vec3 translateValue
-);
+// 绘制图元
+void drawPrimitive(primitive* object);
 
-// will rotate the primitive relative to the given transform
-// angleMode = "rad" or "deg"
-void rotatePrimitive(
-	primitive* object, GLfloat rotateValue, glm::vec3 rotateAxis,
-	char const* angleMode = "deg"
-);
+// 移动图元
+void translatePrimitive(primitive* object, glm::vec3 translateValue);
 
-// will scale the primitive relative to the given transform
-void scalePrimitive(
-	primitive* object, glm::vec3 scaleValue
-);
+// 旋转图元
+// angleMode 只能为 "deg" 或 "rad"
+void rotatePrimitive(primitive* object, GLfloat rotateValue, glm::vec3 rotateAxis, char const* angleMode = "deg");
 
-void addTexture(
-	primitive* object, GLuint texture
-);
+// 缩放图元
+void scalePrimitive(primitive* object, glm::vec3 scaleValue);

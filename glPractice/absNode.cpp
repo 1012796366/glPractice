@@ -26,29 +26,48 @@ GLuint genEBO()
 	return tempEBO;
 }
 
-void buffVerticles(primitive* object, GLfloat* verticles, GLsizei verticlesLength, GLenum usages)
+void buffVerticles(
+	primitive* object, GLfloat* vertices, GLsizei verticeLength,
+	GLenum usages, GLuint verticeDimension, GLuint colorDimension, GLuint textureDimension)
 {
 	glBindVertexArray(object->vaoID);
 	glBindBuffer(GL_ARRAY_BUFFER, object->vboID);
-	glBufferData(GL_ARRAY_BUFFER, verticlesLength, verticles, usages);
+	glBufferData(GL_ARRAY_BUFFER, verticeLength, vertices, usages);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (void*)0);
-	//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
+	glVertexAttribPointer(
+		0, verticeDimension, GL_FLOAT, GL_FALSE,
+		(verticeDimension + colorDimension + textureDimension) * sizeof(GLfloat),
+		(void*)0
+	);
 	glEnableVertexAttribArray(0);
-	//glEnableVertexAttribArray(1);
-	glEnableVertexAttribArray(2);
-
-	object->vertexCount = (verticlesLength / sizeof(GLfloat) / 5);
+	if (colorDimension)
+	{
+		glVertexAttribPointer(
+			1, colorDimension, GL_FLOAT, GL_FALSE,
+			(verticeDimension + colorDimension + textureDimension) * sizeof(GLfloat),
+			(void*)(verticeDimension * sizeof(GLfloat))
+		);
+		glEnableVertexAttribArray(1);
+	}
+	if (textureDimension)
+	{
+		glVertexAttribPointer(
+			2, 2, GL_FLOAT, GL_FALSE,
+			(verticeDimension + colorDimension + textureDimension) * sizeof(GLfloat),
+			(void*)((verticeDimension + colorDimension) * sizeof(GLfloat))
+		);
+		glEnableVertexAttribArray(2);
+	}
+	object->vertexCount = (verticeLength / sizeof(GLfloat) / 5);
 }
 
-void buffIndices(primitive* object, GLuint* indices, GLsizei indicesLength, GLenum usages)
+void buffIndices(primitive* object, GLuint* indices, GLsizei indiceLength, GLenum usages)
 {
 	glBindVertexArray(object->vaoID);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, object->eboID);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indicesLength, indices, usages);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indiceLength, indices, usages);
 
-	object->indiceCount = indicesLength / sizeof(GLuint);
+	object->indiceCount = indiceLength / sizeof(GLuint);
 }
 
 GLuint loadTextureFromFile(std::string pathToImg)
@@ -66,7 +85,7 @@ GLuint loadTextureFromFile(std::string pathToImg)
 	}
 	if (channels == 4)
 	{
-		// pic with 4 channels must be read with param GL_RGBA
+		// 带 ALPHA 通道的会自动改正
 		type = GL_RGBA;
 	}
 	glGenTextures(1, &texture);
@@ -92,7 +111,7 @@ void drawPrimitive(primitive* object)
 	glm::mat4 view = glm::mat4(1.0f);
 	glm::mat4 projection = glm::mat4(1.0f);
 	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-	projection = glm::perspective(glm::radians(100.0f), (float)(screenWidth / screenHeight), 0.1f, 100.0f);
+	projection = glm::perspective(glm::radians(60.0f), (float)(screenWidth / screenHeight), 0.1f, 100.0f);
 	setMat4(object->shaderID, "model", object->transform);
 	setMat4(object->shaderID, "view", view);
 	setMat4(object->shaderID, "projection", projection);
