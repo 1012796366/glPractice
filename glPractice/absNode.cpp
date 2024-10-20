@@ -28,7 +28,7 @@ GLuint genEBO()
 
 void buffVerticles(
 	primitive* object, GLfloat* vertices, GLsizei verticeLength,
-	GLenum usages, GLuint verticeDimension, GLuint colorDimension, GLuint textureDimension)
+	GLenum usages, GLuint verticeDimension, GLuint colorDimension, GLuint textureDimension, GLuint additionalDimension)
 {
 	glBindVertexArray(object->vaoID);
 	glBindBuffer(GL_ARRAY_BUFFER, object->vboID);
@@ -36,7 +36,7 @@ void buffVerticles(
 
 	glVertexAttribPointer(
 		0, verticeDimension, GL_FLOAT, GL_FALSE,
-		(verticeDimension + colorDimension + textureDimension) * sizeof(GLfloat),
+		(verticeDimension + colorDimension + textureDimension + additionalDimension) * sizeof(GLfloat),
 		(void*)0
 	);
 	glEnableVertexAttribArray(0);
@@ -44,7 +44,18 @@ void buffVerticles(
 	{
 		glVertexAttribPointer(
 			1, colorDimension, GL_FLOAT, GL_FALSE,
-			(verticeDimension + colorDimension + textureDimension) * sizeof(GLfloat),
+			(verticeDimension + colorDimension + textureDimension + additionalDimension) * sizeof(GLfloat),
+			(void*)(verticeDimension * sizeof(GLfloat))
+		);
+		glEnableVertexAttribArray(1);
+	}
+	if (additionalDimension)
+	{
+		// 顶点数据里面先法向量再纹理坐标，懒得改了
+		// 暂时替代颜色属性了
+		glVertexAttribPointer(
+			1, additionalDimension, GL_FLOAT, GL_FALSE,
+			(verticeDimension + textureDimension + additionalDimension) * sizeof(GLfloat),
 			(void*)(verticeDimension * sizeof(GLfloat))
 		);
 		glEnableVertexAttribArray(1);
@@ -53,8 +64,8 @@ void buffVerticles(
 	{
 		glVertexAttribPointer(
 			2, 2, GL_FLOAT, GL_FALSE,
-			(verticeDimension + colorDimension + textureDimension) * sizeof(GLfloat),
-			(void*)((verticeDimension + colorDimension) * sizeof(GLfloat))
+			(verticeDimension + colorDimension + textureDimension + additionalDimension) * sizeof(GLfloat),
+			(void*)((verticeDimension + colorDimension + additionalDimension) * sizeof(GLfloat))
 		);
 		glEnableVertexAttribArray(2);
 	}
@@ -108,13 +119,15 @@ void drawPrimitive(primitive* object)
 	glBindVertexArray(object->vaoID);
 	glUseProgram(object->shaderID);
 
-	glm::mat4 view = glm::mat4(1.0f);
 	glm::mat4 projection = glm::mat4(1.0f);
-	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-	projection = glm::perspective(glm::radians(60.0f), (float)(screenWidth / screenHeight), 0.1f, 100.0f);
+	
+	projection = glm::perspective(glm::radians(defaultCamera.zoom), (float)(screenWidth / screenHeight), 0.1f, 100.0f);
 	setMat4(object->shaderID, "model", object->transform);
-	setMat4(object->shaderID, "view", view);
+	setMat4(object->shaderID, "view", getView(&defaultCamera));
 	setMat4(object->shaderID, "projection", projection);
+	setVec3(object->shaderID, "lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
+	setVec3(object->shaderID, "lightPos", defaultCamera.cameraPosition);
+	setVec3(object->shaderID, "viewPos", defaultCamera.cameraPosition);
 
 	for (GLuint i = 0; i < object->textureCount; ++i)
 	{

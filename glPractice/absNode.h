@@ -7,6 +7,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include "shader.h"
 #include <iostream>
+#include "camera.h"
 
 class primitive
 {
@@ -32,7 +33,7 @@ GLuint genEBO();
 // xxDimension 代表一个属性是多少维，设置为 0 则禁用该属性
 void buffVerticles(
 	primitive* object, GLfloat* vertices, GLsizei verticeLength, GLenum usages = GL_STATIC_DRAW,
-	GLuint verticeDimension = 3, GLuint colorDimension = 3, GLuint textureDimension = 2
+	GLuint verticeDimension = 3, GLuint colorDimension = 3, GLuint textureDimension = 2, GLuint additionalDimension = 0
 );
 
 // 导入序列
