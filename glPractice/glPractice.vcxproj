@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="..\Dependencies\src\glad.c" />
     <ClCompile Include="absNode.cpp" />
+    <ClCompile Include="camera.cpp" />
     <ClCompile Include="framebuffer.cpp" />
     <ClCompile Include="inputProc.cpp" />
     <ClCompile Include="main.cpp" />
@@ -153,6 +154,7 @@
   <ItemGroup>
     <ClInclude Include="..\Dependencies\include\stb_image.h" />
     <ClInclude Include="absNode.h" />
+    <ClInclude Include="camera.h" />
     <ClInclude Include="initWin.h" />
     <ClInclude Include="inputProc.h" />
     <ClInclude Include="opsWin.h" />
@@ -162,6 +164,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />
+    <None Include="Shader\shaderFrag.frag" />
+    <None Include="Shader\shaderVert.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

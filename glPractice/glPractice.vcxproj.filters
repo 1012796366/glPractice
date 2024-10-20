@@ -91,6 +91,24 @@
     <Filter Include="图元\定义">
       <UniqueIdentifier>{4f5c0fe5-32e1-4855-a07b-25c38ebf21bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="摄像机">
+      <UniqueIdentifier>{8010effa-23d7-407f-a15c-f6a49c4e1999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="摄像机\定义">
+      <UniqueIdentifier>{b17227dc-c71f-4851-96f9-7caea2629e1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="摄像机\声明">
+      <UniqueIdentifier>{54c838fd-6b5c-4dad-b113-eca1a68976ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="着色器\代码">
+      <UniqueIdentifier>{8a196b6d-9c49-4fa3-a669-37aded242f61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="着色器\代码\顶点着色器">
+      <UniqueIdentifier>{fdad2f38-5009-43b1-8d4f-d30dd6c0bf2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="着色器\代码\片段着色器">
+      <UniqueIdentifier>{313ab05d-8840-460b-8a0c-bdede07deea1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Dependencies\src\glad.c">
@@ -123,10 +141,19 @@
     <ClCompile Include="absNode.cpp">
       <Filter>图元\定义</Filter>
     </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>摄像机\定义</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md">
       <Filter>介绍文档</Filter>
+    </None>
+    <None Include="Shader\shaderVert.vert">
+      <Filter>着色器\代码\顶点着色器</Filter>
+    </None>
+    <None Include="Shader\shaderFrag.frag">
+      <Filter>着色器\代码\片段着色器</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +180,9 @@
     </ClInclude>
     <ClInclude Include="..\Dependencies\include\stb_image.h">
       <Filter>stb_img\声明</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>摄像机\声明</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
