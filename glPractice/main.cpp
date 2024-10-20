@@ -11,38 +11,82 @@ int screenHeight = 600;
 
 int main()
 {
+	//GLfloat vertices[] = {
+	//	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,		// 0
+	//	 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,		// 1
+	//	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,		// 2
+	//	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,		// 3
+	//	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,		// 4
+	//	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,		// 5
+	//	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,		// 6
+	//	-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,		// 7
+	//	-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,		// 8
+	//	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,		// 9
+	//	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,		// 10
+	//	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,		// 11
+	//	 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,		// 12
+	//	 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,		// 13
+	//	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,		// 14
+	//	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,		// 15
+	//	-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,		// 16
+	//};
+	//GLuint indices[] = {
+	//	0, 1, 2,
+	//	0, 2, 3,
+	//	4, 5, 6,
+	//	4, 6, 7,
+	//	8, 9, 10,
+	//	4, 8, 10,
+	//	2, 11, 12,
+	//	11, 12, 13,
+	//	10, 14, 15,
+	//	4, 10, 15,
+	//	2, 3, 11,
+	//	3, 11, 16
+	//};
 	GLfloat vertices[] = {
-		-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,		// 0
-		 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,		// 1
-		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,		// 2
-		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,		// 3
-		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,		// 4
-		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,		// 5
-		 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,		// 6
-		-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,		// 7
-		-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,		// 8
-		-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,		// 9
-		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,		// 10
-		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,		// 11
-		 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,		// 12
-		 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,		// 13
-		 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,		// 14
-		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,		// 15
-		-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,		// 16
-	};
-	GLuint indices[] = {
-		0, 1, 2,
-		0, 2, 3,
-		4, 5, 6,
-		4, 6, 7,
-		8, 9, 10,
-		4, 8, 10,
-		2, 11, 12,
-		11, 12, 13,
-		10, 14, 15,
-		4, 10, 15,
-		2, 3, 11,
-		3, 11, 16
+		// positions          // normals           // texture coords
+		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
+		 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 0.0f,
+		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 1.0f,
+		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 1.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
+
+		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f, 0.0f,
+		 0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f, 1.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f, 1.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f, 1.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f, 0.0f,
+
+		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
+		-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
+		-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 0.0f,
+		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
+
+		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
+		 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
+		 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
+
+		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 1.0f,
+		 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 0.0f,
+		 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 0.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 0.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 1.0f,
+
+		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f,
+		 0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 1.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 0.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f
 	};
 	glm::vec3 cubePos[] = {
 		glm::vec3(0.0f,  0.0f,  0.0f),
@@ -58,25 +102,17 @@ int main()
 	};
 
 	basicWindow base;
-	try
-	{
-		initWindow(&base, "LearnOpenGL", GLBW_SCREEN_WINDOWED, screenWidth, screenHeight);
-	}
-	catch (std::exception e)
-	{
-		std::cerr << e.what();
-		return 1;
-	}
+	initWindow(&base, "LearnOpenGL", GLBW_SCREEN_WINDOWED, screenWidth, screenHeight);
 
 	primitive box;
 	box.vaoID = genVAO();
 	box.vboID = genVBO();
 	box.eboID = genEBO();
-	box.shaderID = loadShaderFromFile("./Shader/vertex.vs", "./Shader/fragment.fs");
+	box.shaderID = loadShaderFromFile("./Shader/shaderVert.vert", "./Shader/shaderFrag.frag");
 
 	// ↓ 导入顶点数据与序列数据 ↓
-	buffVerticles(&box, vertices, sizeof(vertices), GL_STATIC_DRAW, 3, 0, 2);
-	buffIndices(&box, indices, sizeof(indices), GL_STATIC_DRAW);
+	buffVerticles(&box, vertices, sizeof(vertices), GL_STATIC_DRAW, 3, 0, 2, 3);
+	//buffIndices(&box, indices, sizeof(indices), GL_STATIC_DRAW);
 	// ↑ 导入顶点数据与序列数据 ↑
 
 	addTexture(&box, loadTextureFromFile("./pic/container.jpg"));
@@ -86,10 +122,10 @@ int main()
 
 	setInt(box.shaderID, "cusTex1", 0);
 	setInt(box.shaderID, "cusTex2", 1);
-	glEnable(GL_DEPTH_TEST);
+
 	while (isWindowAlive(&base))
 	{
-		processInput(base);
+		processInput(&base);
 		clearBackground();
 		for (GLuint i = 0; i < sizeof(cubePos) / sizeof(glm::vec3); ++i)
 		{
@@ -105,7 +141,6 @@ int main()
 			}
 			drawPrimitive(&box);
 		}
-
 		auto errID = glGetError();
 		if (errID)
 		{
