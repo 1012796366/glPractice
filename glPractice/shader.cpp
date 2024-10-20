@@ -124,6 +124,12 @@ void setFloat(GLuint shaderID, const std::string& name, GLfloat value)
 	glUniform1f(glGetUniformLocation(shaderID, name.c_str()), value);
 }
 
+void setVec3(GLuint shaderID, const std::string& name, glm::vec3 value)
+{
+	glUseProgram(shaderID);
+	glUniform3fv(glGetUniformLocation(shaderID, name.c_str()), 1, &value[0]);
+}
+
 void setMat4(GLuint shaderID, const std::string& name, glm::mat4 value)
 {
 	glUseProgram(shaderID);
