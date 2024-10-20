@@ -1,5 +1,6 @@
 #pragma once
 #include "initWin.h"
+#include "inputProc.h"
 
 // set the background color without flush the window
 void setBackgroundColor(GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha=1.0f);
@@ -8,7 +9,7 @@ void setBackgroundColor(GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha=
 void clearBackground();
 
 // will call glfwSwapBuffers with this->window passed as argument
-void swapBuffer(basicWindow* basicWindowObj);
+void swapBuffer(basicWindow* opsWindow);
 
 // will call glfwPollEvents
 void pollEvents();

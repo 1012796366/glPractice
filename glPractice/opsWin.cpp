@@ -10,9 +10,9 @@ void clearBackground()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void swapBuffer(basicWindow* basicWindowObj)
+void swapBuffer(basicWindow* opsWindow)
 {
-	glfwSwapBuffers(basicWindowObj->window);
+	glfwSwapBuffers(opsWindow->window);
 }
 
 void pollEvents()
@@ -63,7 +63,12 @@ void initWindow(basicWindow* opsObject, char const* title, int scrFlag, int widt
 		size_callback = framebuffer_size_callback;
 	}
 	glfwSetFramebufferSizeCallback(opsObject->window, size_callback);
+	glfwSetInputMode(opsObject->window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetCursorPosCallback(opsObject->window, mouseCall);
+	glfwSetScrollCallback(opsObject->window, scrollCall);
+	glEnable(GL_DEPTH_TEST);
 	opsObject->initFlag = true;
+
 }
 
 void initGLFW(basicWindow* opsObject, char const* title, int width, int height, int scrFlag)
@@ -73,7 +78,6 @@ void initGLFW(basicWindow* opsObject, char const* title, int width, int height, 
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_RESIZABLE, false);
-
 	auto monitor = glfwGetPrimaryMonitor();
 	if (monitor == nullptr)
 	{
@@ -102,7 +106,7 @@ void initGLFW(basicWindow* opsObject, char const* title, int width, int height, 
 	case GLBW_SCREEN_BORDERLESS:
 		glfwWindowHint(GLFW_DECORATED, false);
 		opsObject->window = glfwCreateWindow(width, height, title, nullptr, nullptr);
-		break;
+		break;	
 		// Windowed
 	case GLBW_SCREEN_WINDOWED:
 		opsObject->window = glfwCreateWindow(width, height, title, nullptr, nullptr);
