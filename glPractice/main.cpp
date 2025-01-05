@@ -6,44 +6,11 @@
 #include "shader.h"
 #include "absNode.h"
 
-int screenWidth = 800;
-int screenHeight = 600;
+int screenWidth = 1600;
+int screenHeight = 900;
 
 int main()
 {
-	//GLfloat vertices[] = {
-	//	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,		// 0
-	//	 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,		// 1
-	//	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,		// 2
-	//	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,		// 3
-	//	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,		// 4
-	//	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,		// 5
-	//	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,		// 6
-	//	-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,		// 7
-	//	-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,		// 8
-	//	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,		// 9
-	//	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,		// 10
-	//	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,		// 11
-	//	 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,		// 12
-	//	 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,		// 13
-	//	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,		// 14
-	//	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,		// 15
-	//	-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,		// 16
-	//};
-	//GLuint indices[] = {
-	//	0, 1, 2,
-	//	0, 2, 3,
-	//	4, 5, 6,
-	//	4, 6, 7,
-	//	8, 9, 10,
-	//	4, 8, 10,
-	//	2, 11, 12,
-	//	11, 12, 13,
-	//	10, 14, 15,
-	//	4, 10, 15,
-	//	2, 3, 11,
-	//	3, 11, 16
-	//};
 	GLfloat vertices[] = {
 		// positions          // normals           // texture coords
 		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
@@ -66,7 +33,7 @@ int main()
 		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
 		-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 0.0f,
 		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
-
+		
 		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
 		 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 1.0f,
 		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
@@ -115,13 +82,22 @@ int main()
 	//buffIndices(&box, indices, sizeof(indices), GL_STATIC_DRAW);
 	// ↑ 导入顶点数据与序列数据 ↑
 
-	addTexture(&box, loadTextureFromFile("./pic/container.jpg"));
-	addTexture(&box, loadTextureFromFile("./pic/awesomeface.png"));
+	addTexture(&box, loadTextureFromFile("./pic/container2.png"));
+	addTexture(&box, loadTextureFromFile("./pic/container2_specular.png"));
 
-	setBackgroundColor(0.2f, 0.3f, 0.3f);
+	setBackgroundColor(0.0f, 0.0f, 0.0f);
 
-	setInt(box.shaderID, "cusTex1", 0);
-	setInt(box.shaderID, "cusTex2", 1);
+	setInt(box.shaderID, "material.cusTex[0]", 0);
+	setInt(box.shaderID, "material.cusTex[1]", 1);
+	setInt(box.shaderID, "material.cusTex[2]", 2);
+	setVec3(box.shaderID, "light.color", glm::vec3(1.0f, 1.0f, 1.0f));
+	setVec3(box.shaderID, "light.diffuse", glm::vec3(0.5f, 0.5f, 0.5f));
+	setVec3(box.shaderID, "light.ambient", glm::vec3(0.2f, 0.2f, 0.2f));
+	setVec3(box.shaderID, "light.specular", glm::vec3(1.0f, 1.0f, 1.0f));
+	setFloat(box.shaderID, "light.constant", 1.0f);
+	setFloat(box.shaderID, "light.linear", 0.09f);
+	setFloat(box.shaderID, "light.quadratic", 0.032f);
+	setFloat(box.shaderID, "material.shiness", 64.0f);
 
 	while (isWindowAlive(&base))
 	{
@@ -133,12 +109,15 @@ int main()
 			translatePrimitive(&box, cubePos[i]);
 			if (i % 3 == 0)
 			{
-				rotatePrimitive(&box, (float)glfwGetTime(), glm::vec3(1.0f, 0.3f, 0.5f), "deg");
+				//rotatePrimitive(&box, (float)glfwGetTime(), glm::vec3(1.0f, 0.3f, 0.5f), "deg");
 			}
 			else
 			{
-				rotatePrimitive(&box, 32.0f, glm::vec3(0.2f, 0.1f, 0.3f), "deg");
+				//rotatePrimitive(&box, 32.0f, glm::vec3(0.2f, 0.1f, 0.3f), "deg");
 			}
+			setVec3(box.shaderID, "light.position", defaultCamera.cameraPosition);
+			setVec3(box.shaderID, "light.direction", defaultCamera.cameraDirection);
+			setFloat(box.shaderID, "light.cutOff", glm::cos(glm::radians(12.5f)));
 			drawPrimitive(&box);
 		}
 		auto errID = glGetError();
