@@ -42,6 +42,7 @@ void buffVerticles(
 	glEnableVertexAttribArray(0);
 	if (colorDimension)
 	{
+		// 历史遗留，懒得改了
 		glVertexAttribPointer(
 			1, colorDimension, GL_FLOAT, GL_FALSE,
 			(verticeDimension + colorDimension + textureDimension + additionalDimension) * sizeof(GLfloat),
@@ -51,8 +52,7 @@ void buffVerticles(
 	}
 	if (additionalDimension)
 	{
-		// 顶点数据里面先法向量再纹理坐标，懒得改了
-		// 暂时替代颜色属性了
+		// 已经是先法向量后纹理坐标了
 		glVertexAttribPointer(
 			1, additionalDimension, GL_FLOAT, GL_FALSE,
 			(verticeDimension + textureDimension + additionalDimension) * sizeof(GLfloat),
@@ -125,9 +125,8 @@ void drawPrimitive(primitive* object)
 	setMat4(object->shaderID, "model", object->transform);
 	setMat4(object->shaderID, "view", getView(&defaultCamera));
 	setMat4(object->shaderID, "projection", projection);
-	setVec3(object->shaderID, "lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
-	setVec3(object->shaderID, "lightPos", defaultCamera.cameraPosition);
 	setVec3(object->shaderID, "viewPos", defaultCamera.cameraPosition);
+
 
 	for (GLuint i = 0; i < object->textureCount; ++i)
 	{
