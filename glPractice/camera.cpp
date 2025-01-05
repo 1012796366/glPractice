@@ -7,7 +7,7 @@ camera::camera()
 	cameraDirection = glm::normalize(cameraTarget - cameraPosition);
 	pitch = 0.0f;
 	yaw = -90.0f;
-	zoom = 90.0f;
+	zoom = 60.0f;
 	
 	auto tempUp = glm::vec3(0.0f, 1.0f, 0.0f);			// 暂时指定绝对向上的向量
 	// 向量叉乘的顺序是有影响的，a×b刚好反向于b×a
