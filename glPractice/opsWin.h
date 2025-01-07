@@ -36,3 +36,7 @@ bool isWindowAlive(basicWindow* opsObject);
 // will not be called automatically when basicWindow object is destroyed
 // need to manually call glfwTerminate if no basicWindow object is still alive
 void shutWindow(basicWindow* opsObject);
+
+// debug recall func
+void APIENTRY glDebugOutput(GLenum source, GLenum type, GLuint id, GLenum severity,
+	GLsizei length, const GLchar* message, const void* userParam);
