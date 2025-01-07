@@ -23,4 +23,5 @@ void setBool(GLuint shaderID, const std::string& name, GLboolean value);
 void setInt(GLuint shaderID, const std::string& name, GLint value);
 void setFloat(GLuint shaderID, const std::string& name, GLfloat value);
 void setVec3(GLuint shaderID, const std::string& name, glm::vec3 value);
+void setVec3(GLuint shaderID, const std::string& name, GLfloat value1, GLfloat value2, GLfloat value3);
 void setMat4(GLuint shaderID, const std::string& name, glm::mat4 value);
