@@ -9,6 +9,8 @@
 int screenWidth = 1280;
 int screenHeight = 960;
 
+extern GLuint flashlight;
+
 int main()
 {
 	float vertices[] = {
@@ -139,9 +141,9 @@ int main()
 		// spotLight
 		setVec3(box.shaderID, "spotLight.position", defaultCamera.cameraPosition);
 		setVec3(box.shaderID, "spotLight.direction", defaultCamera.cameraDirection);
-		setVec3(box.shaderID, "spotLight.ambient", glm::vec3(0.0f, 0.0f, 0.0f));
-		setVec3(box.shaderID, "spotLight.diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
-		setVec3(box.shaderID, "spotLight.specular", glm::vec3(1.0f, 1.0f, 1.0f));
+		setVec3(box.shaderID, "spotLight.ambient", glm::vec3(0.0f * flashlight, 0.0f * flashlight, 0.0f * flashlight));
+		setVec3(box.shaderID, "spotLight.diffuse", glm::vec3(1.0f * flashlight, 1.0f * flashlight, 1.0f * flashlight));
+		setVec3(box.shaderID, "spotLight.specular", glm::vec3(1.0f * flashlight, 1.0f * flashlight, 1.0f * flashlight));
 		setFloat(box.shaderID, "spotLight.constant", 1.0f);
 		setFloat(box.shaderID, "spotLight.linear", 0.09f);
 		setFloat(box.shaderID, "spotLight.quadratic", 0.032f);
