@@ -1,5 +1,8 @@
 #include "inputProc.h"
 
+GLuint flashlight = 1;
+
+
 void processInput(basicWindow* opsWindow)
 {
 	static GLfloat deltaTime = 0.0f;			// 当前帧和上一帧的时间差
@@ -8,6 +11,7 @@ void processInput(basicWindow* opsWindow)
 	deltaTime = currentFrame - lastFrame;
 	lastFrame = currentFrame;
 	GLfloat cameraSpeed = 2.5f * deltaTime;
+	static GLboolean readyFlag = false;
 	if (glfwGetKey(opsWindow->window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 	{
 		glfwSetWindowShouldClose(opsWindow->window, true);
@@ -35,6 +39,26 @@ void processInput(basicWindow* opsWindow)
 	if (glfwGetKey(opsWindow->window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
 	{
 		defaultCamera.cameraPosition -= cameraSpeed * defaultCamera.cameraYaxis;
+	}
+	if (glfwGetKey(opsWindow->window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+	{
+		cameraSpeed *= 2.0f;
+	}
+	if (glfwGetKey(opsWindow->window, GLFW_KEY_F) == GLFW_PRESS && readyFlag)
+	{
+		if (flashlight == 1)
+		{
+			flashlight = 0;
+		}
+		else
+		{
+			flashlight = 1;
+		}
+		readyFlag = false;
+	}
+	if (glfwGetKey(opsWindow->window, GLFW_KEY_F) == GLFW_RELEASE)
+	{
+		readyFlag = true;
 	}
 }
 
