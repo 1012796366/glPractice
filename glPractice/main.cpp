@@ -96,7 +96,7 @@ int main()
 
 	setInt(box.shaderID, "material.cusTex[0]", 0);
 	setInt(box.shaderID, "material.cusTex[1]", 1);
-	setFloat(box.shaderID, "material.shiness", 64.0f);
+	setFloat(box.shaderID, "material.shininess", 64.0f);
 
 	while (isWindowAlive(&base))
 	{
